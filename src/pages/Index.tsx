@@ -7,6 +7,10 @@ import GallerySection from "@/components/GallerySection";
 import BuildsSection from "@/components/BuildsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import ParallaxBanner from "@/components/ParallaxBanner";
+import screenshotStreet from "@/assets/screenshot-street.jpg";
+import screenshotNightlife from "@/assets/screenshot-nightlife.jpg";
+import screenshotCustom from "@/assets/screenshot-custom.jpg";
 
 const Index = () => {
   return (
@@ -15,15 +19,27 @@ const Index = () => {
       <HeroSection />
       <div className="gradient-divider" />
       <AboutSection />
-      <div className="gradient-divider" />
+      <ParallaxBanner image={screenshotStreet} height="h-48 md:h-64">
+        <p className="font-display text-2xl md:text-4xl font-bold tracking-wider text-foreground neon-text">
+          YOUR STORY BEGINS HERE
+        </p>
+      </ParallaxBanner>
       <FeaturesSection />
       <div className="gradient-divider" />
       <VehiclesSection />
-      <div className="gradient-divider" />
+      <ParallaxBanner image={screenshotNightlife} height="h-48 md:h-64">
+        <p className="font-display text-2xl md:text-4xl font-bold tracking-wider text-foreground neon-text">
+          EXPLORE THE CITY
+        </p>
+      </ParallaxBanner>
       <GallerySection />
       <div className="gradient-divider" />
       <BuildsSection />
-      <div className="gradient-divider" />
+      <ParallaxBanner image={screenshotCustom} height="h-48 md:h-64">
+        <p className="font-display text-2xl md:text-4xl font-bold tracking-wider text-foreground neon-text">
+          JOIN THE COMMUNITY
+        </p>
+      </ParallaxBanner>
       <CTASection />
       <Footer />
     </div>
