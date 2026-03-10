@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { useParallax } from "@/hooks/use-parallax";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Particles = () => {
@@ -63,11 +64,15 @@ const Particles = () => {
 };
 
 const HeroSection = () => {
+  const { ref: parallaxRef, y } = useParallax(0.5);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={parallaxRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0">
+      <motion.div style={{ y }} className="absolute inset-0 -top-20 -bottom-20">
         <img src={heroBg} alt="Elision RP City" className="w-full h-full object-cover" />
+      </motion.div>
+      <div className="absolute inset-0">
         <div className="absolute inset-0 bg-background/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
       </div>
