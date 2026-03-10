@@ -1,5 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import AnimatedSection, { staggerContainer, staggerItem } from "@/components/AnimatedSection";
+import SkeletonImage from "@/components/SkeletonImage";
 import vehiclePolice from "@/assets/vehicle-police.jpg";
 import vehicleLuxury from "@/assets/vehicle-luxury.jpg";
 import vehicleTuner from "@/assets/vehicle-tuner.jpg";
@@ -14,33 +16,36 @@ const vehicles = [
 
 const VehiclesSection = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section id="vehicles" className="section-padding">
       <div className="container mx-auto max-w-6xl" ref={ref}>
-        <div className="text-center mb-16">
+        <AnimatedSection className="text-center mb-16">
           <p className="font-body text-sm uppercase tracking-[0.3em] text-primary mb-4">Vehicle Addons</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground tracking-wide">
             CUSTOM VEHICLES
           </h2>
           <div className="gradient-divider mx-auto max-w-xs mt-6" />
-        </div>
+        </AnimatedSection>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {vehicles.map((v, i) => (
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
+          {vehicles.map((v) => (
             <motion.div
               key={v.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              variants={staggerItem}
               className="glass-card overflow-hidden group hover:border-primary/30 transition-all duration-500"
             >
               <div className="overflow-hidden aspect-video">
-                <img
+                <SkeletonImage
                   src={v.img}
                   alt={v.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="group-hover:scale-110 transition-transform duration-700"
                 />
               </div>
               <div className="p-5">
@@ -49,7 +54,7 @@ const VehiclesSection = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import AnimatedSection, { staggerContainer, staggerItem } from "@/components/AnimatedSection";
 import { Car, Users, Coins, Briefcase, Home, Code } from "lucide-react";
 
 const features = [
@@ -13,26 +14,29 @@ const features = [
 
 const FeaturesSection = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section id="features" className="section-padding">
       <div className="container mx-auto max-w-6xl" ref={ref}>
-        <div className="text-center mb-16">
+        <AnimatedSection className="text-center mb-16">
           <p className="font-body text-sm uppercase tracking-[0.3em] text-primary mb-4">What We Offer</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground tracking-wide">
             SERVER FEATURES
           </h2>
           <div className="gradient-divider mx-auto max-w-xs mt-6" />
-        </div>
+        </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((f, i) => (
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {features.map((f) => (
             <motion.div
               key={f.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              variants={staggerItem}
               className="glass-card p-6 hover:border-primary/30 hover:shadow-[0_0_20px_hsl(160_100%_50%/0.1)] transition-all duration-500 group"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
@@ -42,7 +46,7 @@ const FeaturesSection = () => {
               <p className="font-body text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
