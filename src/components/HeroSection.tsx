@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useParallax } from "@/hooks/use-parallax";
+import SkeletonImage from "@/components/SkeletonImage";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Particles = () => {
