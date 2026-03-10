@@ -70,7 +70,7 @@ const HeroSection = () => {
     <section ref={parallaxRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <motion.div style={{ y }} className="absolute inset-0 -top-20 -bottom-20">
-        <img src={heroBg} alt="Elision RP City" className="w-full h-full object-cover" />
+        <SkeletonImage src={heroBg} alt="Elision RP City" />
       </motion.div>
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-background/70" />
