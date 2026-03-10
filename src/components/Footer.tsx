@@ -38,6 +38,17 @@ const Footer = () => {
         <p className="font-body text-xs text-muted-foreground text-center">
           © 2026 Elision RP. All rights reserved.
         </p>
+        <p className="font-body text-xs text-muted-foreground text-center mt-2">
+          Made with 💖 By{" "}
+          <a
+            href="https://discord.gg/7eAEX2xDCj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline transition-colors"
+          >
+            ModHub
+          </a>
+        </p>
       </div>
     </footer>
   );
